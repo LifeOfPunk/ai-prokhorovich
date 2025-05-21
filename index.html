@@ -11,97 +11,124 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Subscribe to AI.Prokhorovich</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join AI.Prokhorovich</title>
   <style>
-    html, body {
+    body, html {
       margin: 0;
       padding: 0;
-      overflow-x: hidden;
+      height: 100%;
     }
     body {
-      background: url('background.png') no-repeat center center fixed;
-      background-size: cover;
-      font-family: Arial, sans-serif;
+      background: url('background.png') center/cover no-repeat;
+      font-family: 'Inter', sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      position: relative;
+      color: #fff;
     }
-    .overlay {
-      position: absolute;
-      bottom: 10%;
-      left: 10%;
-      background: rgba(255, 255, 255, 0.95);
+    .container {
+      display: flex;
+      max-width: 1200px;
+      width: 100%;
       padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      width: 90%;
-      max-width: 400px;
+      box-sizing: border-box;
     }
-    h1 {
-      font-size: 24px;
-      margin: 0 0 10px;
-      color: #000;
+    .left, .right {
+      flex: 1;
     }
-    p {
-      font-size: 16px;
+    .left {
+      padding-right: 20px;
+    }
+    .left h1 {
+      font-size: 48px;
       margin: 0 0 20px;
-      color: #333;
+      line-height: 1.1;
+      color: #FFEB3B;
     }
-    input[type="email"], input[type="text"] {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 14px;
+    .left p {
+      font-size: 24px;
+      margin: 0 0 40px;
+      color: #ffffff;
     }
-    button {
+    .form-wrapper {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 30px;
+      border-radius: 8px;
+      max-width: 400px;
       width: 100%;
-      padding: 10px;
-      background-color: #FFD43B;
+    }
+    .form-wrapper input,
+    .form-wrapper button {
+      width: 100%;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      font-size: 16px;
       border: none;
       border-radius: 4px;
-      font-weight: bold;
-      font-size: 16px;
+      box-sizing: border-box;
+    }
+    .form-wrapper input {
+      background: #fff;
       color: #000;
+    }
+    .form-wrapper button {
+      background: #FFEB3B;
+      color: #000;
+      font-weight: bold;
       cursor: pointer;
     }
-    button:hover {
-      background-color: #f1c40f;
+    .right {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-    .person {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 50%;
-      max-width: 300px;
+    .right img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
     }
     @media (max-width: 768px) {
-      .overlay {
-        bottom: 5%;
-        left: 5%;
+      .container {
+        flex-direction: column;
+        align-items: center;
       }
-      .person {
-        width: 60%;
+      .left {
+        padding: 0;
+        text-align: center;
+      }
+      .left h1 {
+        font-size: 36px;
+      }
+      .left p {
+        font-size: 20px;
+      }
+      .form-wrapper {
+        margin: 0 auto 30px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="overlay">
-    <h1>Join AI.Prokhorovich</h1>
-    <p>Kickstart your AI with 10 Hacks</p>
-    <form action="https://assets.mailerlite.com/jsonp/1537992/forms/154992777158985055/subscribe" method="post" target="_blank">
-      <input type="email" name="fields[email]" placeholder="Email" required>
-      <input type="text" name="fields[name]" placeholder="Name" required>
-      <input type="hidden" name="ml-submit" value="1">
-      <button type="submit">Subscribe</button>
-    </form>
+  <div class="container">
+    <div class="left">
+      <h1>JOIN AI.Prokhorovich</h1>
+      <p>Kickstart your AI with 10 Hacks</p>
+      <div class="form-wrapper">
+        <!-- Embed MailerLite form -->
+        <form action="https://assets.mailerlite.com/jsonp/1537992/forms/154992777158985055/subscribe" method="post" target="_blank">
+          <input type="email" name="fields[email]" placeholder="Email" required />
+          <input type="text" name="fields[name]" placeholder="Name" />
+          <input type="hidden" name="ml-submit" value="1" />
+          <button type="submit">SUBSCRIBE</button>
+        </form>
+      </div>
+    </div>
+    <div class="right">
+      <img src="person.png" alt="AI Prokhorovich" />
+    </div>
   </div>
-  <img src="person.png" alt="Person" class="person">
 </body>
 </html>
+
 
