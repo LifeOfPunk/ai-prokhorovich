@@ -2,9 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Subscribe to AI.Prokhorovich</title>
-  <style>
+  <style type="text/css">
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
     body {
       background-color: #000;
       color: white;
@@ -13,93 +18,29 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      margin: 0;
       font-family: Arial, sans-serif;
-      padding: 1rem;
     }
     h1 {
       font-size: 24px;
       margin-bottom: 10px;
-      text-align: center;
     }
     p {
       font-size: 16px;
       margin-bottom: 20px;
       text-align: center;
     }
-    form {
-      background: white;
-      padding: 20px;
-      border-radius: 6px;
-      width: 100%;
-      max-width: 400px;
-      box-sizing: border-box;
-    }
-    input {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-      font-size: 14px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-    }
-    button {
-      width: 100%;
-      padding: 10px;
-      background: black;
-      color: white;
+    iframe {
       border: none;
-      font-weight: bold;
-      font-size: 14px;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    #successMessage {
-      display: none;
-      margin-top: 15px;
-      font-size: 16px;
-      color: #00ff88;
-      text-align: center;
+      width: 100%;
+      max-width: 500px;
+      height: 300px;
     }
   </style>
 </head>
 <body>
   <h1>Join AI.Prokhorovich</h1>
   <p>Get the latest updates on AI, tools, and tech delivered to your inbox.</p>
-
-  <form id="subscribeForm">
-    <input type="email" name="fields[email]" placeholder="Email" required />
-    <input type="text" name="fields[name]" placeholder="Name" required />
-    <input type="hidden" name="ml-submit" value="1" />
-    <input type="hidden" name="anticsrf" value="true" />
-    <button type="submit">Subscribe</button>
-  </form>
-
-  <div id="successMessage">Thank you! Check your inbox for the welcome message.</div>
-
-  <script>
-    document.getElementById('subscribeForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const form = e.target;
-      const formData = new FormData(form);
-
-      try {
-        const response = await fetch('https://assets.mailerlite.com/jsonp/1537992/forms/154992777158985055/subscribe', {
-          method: 'POST',
-          body: formData,
-        });
-
-        if (response.ok) {
-          form.style.display = 'none';
-          document.getElementById('successMessage').style.display = 'block';
-        } else {
-          alert('Something went wrong. Please try again.');
-        }
-      } catch (err) {
-        alert('Submission failed. Check your internet connection.');
-      }
-    });
-  </script>
+  <!-- Embed MailerLite universal form -->
+  <iframe src="https://embeds.beehiiv.com/f8c8e34d-9fa2-4536-89a5-e7e90c8f5142?slim=true" frameborder="0" scrolling="no" allowfullscreen></iframe>
 </body>
 </html>
