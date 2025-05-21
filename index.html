@@ -5,96 +5,90 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Subscribe to AI.Prokhorovich</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-    body {
+    html, body {
       margin: 0;
       padding: 0;
+      overflow-x: hidden;
       background-color: #000;
-      color: #fff;
+      color: white;
       font-family: Arial, sans-serif;
+      height: 100vh;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
-      height: 100vh;
+      align-items: center;
       text-align: center;
     }
-    h1 {
-      margin-bottom: 10px;
-      font-size: 24px;
-    }
-    p {
-      font-size: 14px;
-      margin-bottom: 20px;
-    }
-    .form-wrapper {
-      background-color: #111;
+    .form-container {
+      background: #111;
       padding: 20px;
-      border-radius: 8px;
+      border-radius: 6px;
       width: 90%;
       max-width: 400px;
     }
-    .form-wrapper input[type="email"],
-    .form-wrapper input[type="text"] {
+    input[type="email"],
+    input[type="text"] {
       width: 100%;
       padding: 10px;
       margin-bottom: 10px;
       border: none;
       border-radius: 4px;
+      font-size: 14px;
     }
-    .form-wrapper button {
+    button {
       width: 100%;
       padding: 10px;
-      background-color: #fff;
-      color: #000;
+      background-color: white;
+      color: black;
       border: none;
       border-radius: 4px;
       font-weight: bold;
       cursor: pointer;
     }
-    .form-wrapper button:hover {
-      background-color: #ccc;
-    }
     .success-message {
       color: #00ff99;
-      margin-top: 15px;
-      display: none;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
   <h1>Join AI.Prokhorovich</h1>
   <p>Get the latest updates on AI, tools, and tech delivered to your inbox.</p>
-  <div class="form-wrapper">
-    <form id="ml-form" action="https://assets.mailerlite.com/jsonp/1537992/forms/154992777158985055/subscribe" method="post" target="_blank" onsubmit="handleSubmit(event)">
-      <input type="email" name="fields[email]" placeholder="Email" required>
-      <input type="text" name="fields[name]" placeholder="Name">
-      <input type="hidden" name="ml-submit" value="1">
-      <input type="hidden" name="anticsrf" value="true">
+
+  <div class="form-container">
+    <form id="subscribe-form">
+      <input type="email" name="fields[email]" placeholder="Email" required />
+      <input type="text" name="fields[name]" placeholder="Name" />
       <button type="submit">Subscribe</button>
     </form>
-    <div class="success-message" id="success-message">Thank you! Check your inbox for the welcome message.</div>
+    <div id="success" class="success-message" style="display:none;">
+      Thank you! Check your inbox for the welcome message.
+    </div>
   </div>
 
   <script>
-    function handleSubmit(e) {
+    document.getElementById('subscribe-form').addEventListener('submit', function(e) {
       e.preventDefault();
-      const form = document.getElementById('ml-form');
-      const formData = new FormData(form);
-      const params = new URLSearchParams(formData);
 
-      fetch(form.action + '?' + params.toString())
-        .then(response => response.json())
-        .then(data => {
-          if (data.success) {
-            document.getElementById('ml-form').style.display = 'none';
-            document.getElementById('success-message').style.display = 'block';
-          }
-        })
-        .catch(err => console.error('Error:', err));
-    }
+      const form = e.target;
+      const formData = new FormData(form);
+      const params = new URLSearchParams();
+      for (const pair of formData) {
+        params.append(pair[0], pair[1]);
+      }
+      params.append('ml-submit', '1');
+      params.append('anticsrf', 'true');
+
+      fetch('https://assets.mailerlite.com/jsonp/1537992/forms/154992777158985055/subscribe', {
+        method: 'POST',
+        body: params,
+        mode: 'no-cors'
+      })
+      .then(() => {
+        form.style.display = 'none';
+        document.getElementById('success').style.display = 'block';
+      });
+    });
   </script>
 </body>
 </html>
