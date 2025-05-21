@@ -4,43 +4,98 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Subscribe to AI.Prokhorovich</title>
-  <style type="text/css">
-    html, body {
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
+  <style>
+    * {
+      box-sizing: border-box;
     }
     body {
+      margin: 0;
+      padding: 0;
       background-color: #000;
-      color: white;
+      color: #fff;
+      font-family: Arial, sans-serif;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       height: 100vh;
-      font-family: Arial, sans-serif;
-    }
-    h1 {
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
-    p {
-      font-size: 16px;
-      margin-bottom: 20px;
       text-align: center;
     }
-    iframe {
-      border: none;
+    h1 {
+      margin-bottom: 10px;
+      font-size: 24px;
+    }
+    p {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    .form-wrapper {
+      background-color: #111;
+      padding: 20px;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 400px;
+    }
+    .form-wrapper input[type="email"],
+    .form-wrapper input[type="text"] {
       width: 100%;
-      max-width: 500px;
-      height: 300px;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 4px;
+    }
+    .form-wrapper button {
+      width: 100%;
+      padding: 10px;
+      background-color: #fff;
+      color: #000;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .form-wrapper button:hover {
+      background-color: #ccc;
+    }
+    .success-message {
+      color: #00ff99;
+      margin-top: 15px;
+      display: none;
     }
   </style>
 </head>
 <body>
   <h1>Join AI.Prokhorovich</h1>
   <p>Get the latest updates on AI, tools, and tech delivered to your inbox.</p>
-  <!-- Embed MailerLite universal form -->
-  <iframe src="https://embeds.beehiiv.com/f8c8e34d-9fa2-4536-89a5-e7e90c8f5142?slim=true" frameborder="0" scrolling="no" allowfullscreen></iframe>
+  <div class="form-wrapper">
+    <form id="ml-form" action="https://assets.mailerlite.com/jsonp/1537992/forms/154992777158985055/subscribe" method="post" target="_blank" onsubmit="handleSubmit(event)">
+      <input type="email" name="fields[email]" placeholder="Email" required>
+      <input type="text" name="fields[name]" placeholder="Name">
+      <input type="hidden" name="ml-submit" value="1">
+      <input type="hidden" name="anticsrf" value="true">
+      <button type="submit">Subscribe</button>
+    </form>
+    <div class="success-message" id="success-message">Thank you! Check your inbox for the welcome message.</div>
+  </div>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      const form = document.getElementById('ml-form');
+      const formData = new FormData(form);
+      const params = new URLSearchParams(formData);
+
+      fetch(form.action + '?' + params.toString())
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            document.getElementById('ml-form').style.display = 'none';
+            document.getElementById('success-message').style.display = 'block';
+          }
+        })
+        .catch(err => console.error('Error:', err));
+    }
+  </script>
 </body>
 </html>
+
