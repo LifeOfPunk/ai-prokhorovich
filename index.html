@@ -13,98 +13,95 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Subscribe to AI.Prokhorovich</title>
-  <style type="text/css">
+  <style>
     html, body {
       margin: 0;
       padding: 0;
       overflow-x: hidden;
     }
     body {
-      background-color: #000;
-      color: white;
+      background: url('background.png') no-repeat center center fixed;
+      background-size: cover;
+      font-family: Arial, sans-serif;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
-      font-family: Arial, sans-serif;
+      height: 100vh;
+      position: relative;
+    }
+    .overlay {
+      position: absolute;
+      bottom: 10%;
+      left: 10%;
+      background: rgba(255, 255, 255, 0.95);
       padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      width: 90%;
+      max-width: 400px;
     }
     h1 {
       font-size: 24px;
-      margin-bottom: 10px;
-      text-align: center;
+      margin: 0 0 10px;
+      color: #000;
     }
     p {
       font-size: 16px;
-      margin-bottom: 20px;
-      text-align: center;
+      margin: 0 0 20px;
+      color: #333;
     }
-    form {
-      background-color: #1a1a1a;
-      padding: 20px;
-      border-radius: 8px;
-      width: 100%;
-      max-width: 400px;
-      box-sizing: border-box;
-    }
-    input[type="email"],
-    input[type="text"] {
+    input[type="email"], input[type="text"] {
       width: 100%;
       padding: 10px;
       margin-bottom: 10px;
+      border: 1px solid #ccc;
       border-radius: 4px;
-      border: none;
-      box-sizing: border-box;
+      font-size: 14px;
     }
-    button[type="submit"] {
+    button {
       width: 100%;
       padding: 10px;
-      background-color: #fff;
-      color: #000;
+      background-color: #FFD43B;
       border: none;
       border-radius: 4px;
       font-weight: bold;
+      font-size: 16px;
+      color: #000;
       cursor: pointer;
     }
-    .success-message {
-      margin-top: 15px;
-      color: #00ff99;
-      font-size: 14px;
-      text-align: center;
+    button:hover {
+      background-color: #f1c40f;
+    }
+    .person {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 50%;
+      max-width: 300px;
+    }
+    @media (max-width: 768px) {
+      .overlay {
+        bottom: 5%;
+        left: 5%;
+      }
+      .person {
+        width: 60%;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Join AI.Prokhorovich</h1>
-  <p>Get the latest updates on AI, tools, and tech delivered to your inbox.</p>
-  <form id="subscribe-form">
-    <input type="email" name="fields[email]" placeholder="Email" required />
-    <input type="text" name="fields[name]" placeholder="Name" required />
-    <button type="submit">Subscribe</button>
-    <div id="success" class="success-message" style="display:none;">Thank you! Check your inbox for the welcome message.</div>
-  </form>
-
-  <script>
-    document.getElementById('subscribe-form').addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      const form = e.target;
-      const formData = new FormData(form);
-      const params = new URLSearchParams();
-      for (const pair of formData.entries()) {
-        params.append(pair[0], pair[1]);
-      }
-
-      fetch('https://assets.mailerlite.com/jsonp/1537992/forms/154992777158985055/subscribe', {
-        method: 'POST',
-        body: params,
-        mode: 'no-cors'
-      }).then(() => {
-        form.reset();
-        document.getElementById('success').style.display = 'block';
-      });
-    });
-  </script>
+  <div class="overlay">
+    <h1>Join AI.Prokhorovich</h1>
+    <p>Kickstart your AI with 10 Hacks</p>
+    <form action="https://assets.mailerlite.com/jsonp/1537992/forms/154992777158985055/subscribe" method="post" target="_blank">
+      <input type="email" name="fields[email]" placeholder="Email" required>
+      <input type="text" name="fields[name]" placeholder="Name" required>
+      <input type="hidden" name="ml-submit" value="1">
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+  <img src="person.png" alt="Person" class="person">
 </body>
 </html>
+
